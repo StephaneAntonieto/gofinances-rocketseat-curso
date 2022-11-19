@@ -18,7 +18,15 @@ export const Header = styled.View`
 export const Form = styled.View`
   flex: 1;
   width: 100%;
+  justify-content: space-between;
   padding: ${RFValue(24)}px;
+`;
+
+export const Fields = styled.View``;
+
+export const TransactionTypes = styled.View`
+  flex-direction: row;
+  justify-content: space-between;
 `;
 
 export const Title = styled.Text`
