@@ -11,10 +11,11 @@ import {
 
 import theme from "./src/global/styles/theme";
 
-// import { Dashboard } from "./src/screens/Dashboard";
-// import { Register } from "./src/screens/Register";
 import { StatusBar } from "react-native";
-import { CategorySelect } from "./src/screens/CategorySelect";
+
+import { Register } from "./src/screens/Register";
+// import { Dashboard } from "./src/screens/Dashboard";
+// import { CategorySelect } from "./src/screens/CategorySelect";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -35,8 +36,8 @@ export default function App() {
     <ThemeProvider theme={theme}>
       <StatusBar barStyle={"light-content"} backgroundColor={"#000"} />
       {/* <Dashboard /> */}
-      {/* <Register /> */}
-      <CategorySelect />
+      <Register />
+      {/* <CategorySelect /> */}
     </ThemeProvider>
   );
 }
