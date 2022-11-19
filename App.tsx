@@ -11,7 +11,8 @@ import {
 
 import theme from "./src/global/styles/theme";
 
-import { Dashboard } from "./src/screens/Dashboard";
+// import { Dashboard } from "./src/screens/Dashboard";
+import { Register } from "./src/screens/Register";
 import { StatusBar } from "react-native";
 
 SplashScreen.preventAutoHideAsync();
@@ -31,8 +32,9 @@ export default function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <StatusBar barStyle={"light-content"} backgroundColor={'#000'}/>
-      <Dashboard />
+      <StatusBar barStyle={"light-content"} backgroundColor={"#000"} />
+      {/* <Dashboard /> */}
+      <Register />
     </ThemeProvider>
   );
 }
