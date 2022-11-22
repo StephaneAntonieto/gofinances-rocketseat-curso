@@ -1,6 +1,17 @@
+//Native
 import React from "react";
+import { StatusBar } from "react-native";
 import * as SplashScreen from "expo-splash-screen";
+
+//Navigation
+import { AppRoutes } from "./src/routes/app.routes";
+import { NavigationContainer } from "@react-navigation/native";
+
+//Style
+import 'intl';
+import 'intl/locale-data/jsonp/pt-BR';
 import { ThemeProvider } from "styled-components";
+import theme from "./src/global/styles/theme";
 
 import {
   useFonts,
@@ -8,14 +19,6 @@ import {
   Poppins_500Medium,
   Poppins_700Bold,
 } from "@expo-google-fonts/poppins";
-
-import theme from "./src/global/styles/theme";
-
-import { NavigationContainer } from "@react-navigation/native";
-
-import { StatusBar } from "react-native";
-
-import { AppRoutes } from "./src/routes/app.routes";
 
 SplashScreen.preventAutoHideAsync();
 

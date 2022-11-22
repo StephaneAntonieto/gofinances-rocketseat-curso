@@ -1,9 +1,17 @@
-import React from "react";
+//Native
+import React, { useCallback, useEffect, useState } from "react";
+
+//Forms AND Storage
+import AsyncStorage from "@react-native-async-storage/async-storage";
+
+//Components
 import { HighlightCard } from "../../components/HighlightCard";
 import {
   TransactionCard,
   TransactionCardProps,
 } from "../../components/TransactionCard";
+
+//Style
 import {
   Container,
   Header,
@@ -18,40 +26,60 @@ import {
   Transactions,
   Title,
   TransactionList,
-  LogoutButton
+  LogoutButton,
 } from "./styles";
+import { useFocusEffect } from "@react-navigation/native";
 
+//Interfaces e Types
 export interface DataListProps extends TransactionCardProps {
   id: string;
 }
 
+// ----------------------------------------------------------------------------------------------------------------------------
 export function Dashboard() {
-  const data: DataListProps[] = [
-    {
-      id: "1",
-      type: "positive",
-      title: "Dev de site",
-      amount: "R$ 12.000,00",
-      category: { name: "Vendas", icon: "dollar-sign" },
-      date: "13/04/2020",
-    },
-    {
-      id: "2",
-      type: "negative",
-      title: "Pizza",
-      amount: "R$ 59,00",
-      category: { name: "Alimentação", icon: "coffee" },
-      date: "10/04/2020",
-    },
-    {
-      id: "3",
-      type: "negative",
-      title: "Aluguel do Apartamento",
-      amount: "R$ 1.200,00",
-      category: { name: "Casa", icon: "shopping-bag" },
-      date: "09/04/2020",
-    },
-  ];
+  const [data, setData] = useState<DataListProps[]>([]);
+
+  async function loadTransaction() {
+    const dataKey = "@gofinances:transactions";
+    const response = await AsyncStorage.getItem(dataKey);
+    const transactions = response ? JSON.parse(response) : [];
+
+    const transactionsFormatted: DataListProps[] = transactions.map(
+      (item: DataListProps) => {
+        const amount = Number(item.amount).toLocaleString("pt-BR", {
+          style: "currency",
+          currency: "BRL",
+        });
+        const date = Intl.DateTimeFormat("pt-BR", {
+          day: "2-digit",
+          month: "2-digit",
+          year: "2-digit",
+        }).format(new Date(item.date));
+
+        return {
+          id: item.id,
+          name: item.name,
+          amount,
+          type: item.type,
+          category: item.category,
+          date,
+        };
+      }
+    );
+    setData(transactionsFormatted);
+  }
+
+  useEffect(() => {
+    loadTransaction();
+    // const dataKey = "@gofinances:transactions";
+    // AsyncStorage.removeItem(dataKey);
+  }, []);
+
+  useFocusEffect(
+    useCallback(() => {
+      loadTransaction();
+    },[])
+  );
 
   return (
     <Container>
