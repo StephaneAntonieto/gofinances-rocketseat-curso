@@ -21,19 +21,11 @@ export const Title = styled.Text`
   font-size: ${RFValue(18)}px;
 `;
 
-export const Form = styled.View`
-  flex: 1;
+export const Content = styled.ScrollView.attrs({
+  contentContainerStyle: { flex: 1, padding: 24 },
+})``;
+
+export const ChartContainer = styled.View`
   width: 100%;
-  justify-content: space-between;
-  padding: ${RFValue(24)}px;
+  align-items: center;
 `;
-
-export const Fields = styled.View``;
-
-export const TransactionTypes = styled.View`
-  flex-direction: row;
-  justify-content: space-between;
-  margin-top: ${RFValue(8)}px;
-  margin-bottom: ${RFValue(16)}px;
-`;
-
