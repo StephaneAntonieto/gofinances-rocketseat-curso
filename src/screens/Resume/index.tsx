@@ -1,6 +1,7 @@
 //Native
 import React, { useEffect, useState } from "react";
 import { VictoryPie } from "victory-native";
+import { useBottomTabBarHeight } from "@react-navigation/bottom-tabs";
 
 //DataBase
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -10,7 +11,17 @@ import { categories } from "../../utils/categories";
 import { HistoryCard } from "../../components/HistoryCard";
 
 //Styles
-import { Container, Header, Title, Content, ChartContainer } from "./styles";
+import {
+  Container,
+  Header,
+  Title,
+  Content,
+  ChartContainer,
+  MonthSelect,
+  MonthSelectButton,
+  MonthSelectIcon,
+  Month,
+} from "./styles";
 import { useTheme } from "styled-components";
 import { RFValue } from "react-native-responsive-fontsize";
 
@@ -100,7 +111,22 @@ export function Resume() {
       <Header>
         <Title>Resumo por categoria</Title>
       </Header>
-      <Content>
+      <Content
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={{
+          paddingHorizontal: 24,
+          paddingBottom: useBottomTabBarHeight(),
+        }}
+      >
+        <MonthSelect>
+          <MonthSelectButton>
+            <MonthSelectIcon name="chevron-left"/>
+          </MonthSelectButton>
+          <Month>Maio</Month>
+          <MonthSelectButton>
+            <MonthSelectIcon name="chevron-right"/>
+          </MonthSelectButton>
+        </MonthSelect>
         <ChartContainer>
           <VictoryPie
             data={totalByCategories}
@@ -108,11 +134,13 @@ export function Resume() {
             y="total"
             colorScale={totalByCategories.map((item) => item.color)}
             labelRadius={85}
-            style={{labels:{
-              fontSize: RFValue(18),
-              fontWeight: 'bold',
-              fill: theme.colors.shape
-            }}}
+            style={{
+              labels: {
+                fontSize: RFValue(18),
+                fontWeight: "bold",
+                fill: theme.colors.shape,
+              },
+            }}
           />
         </ChartContainer>
         {totalByCategories.map((item) => (
