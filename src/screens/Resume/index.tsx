@@ -6,6 +6,8 @@ import { useBottomTabBarHeight } from "@react-navigation/bottom-tabs";
 //DataBase
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { categories } from "../../utils/categories";
+import { addMonths, format, subMonths } from "date-fns";
+import { ptBR } from "date-fns/locale";
 
 //Components
 import { HistoryCard } from "../../components/HistoryCard";
@@ -43,11 +45,20 @@ interface CategoryData {
 }
 
 export function Resume() {
+  const [selectedDate, setSelectedDate] = useState(new Date());
   const [totalByCategories, setTotalByCategories] = useState<CategoryData[]>(
     []
   );
 
   const theme = useTheme();
+
+  function handleDateChange(action: "prev" | "next") {
+    if (action === "next") {
+      setSelectedDate(addMonths(selectedDate, 1));
+    } else {
+      setSelectedDate(subMonths(selectedDate, 1));
+    }
+  }
 
   async function loadData() {
     try {
@@ -56,7 +67,10 @@ export function Resume() {
       const responseFormatted = response ? JSON.parse(response) : [];
 
       const expensives = responseFormatted.filter(
-        (expensive: TransactionData) => expensive.type === "negative"
+        (expensive: TransactionData) =>
+          expensive.type === "negative" &&
+          new Date(expensive.date).getMonth() === selectedDate.getMonth() &&
+          new Date(expensive.date).getFullYear() === selectedDate.getFullYear()
       );
 
       const expensivesTotal = expensives.reduce(
@@ -104,7 +118,7 @@ export function Resume() {
 
   useEffect(() => {
     loadData();
-  }, []);
+  }, [selectedDate]);
 
   return (
     <Container>
@@ -119,12 +133,12 @@ export function Resume() {
         }}
       >
         <MonthSelect>
-          <MonthSelectButton>
-            <MonthSelectIcon name="chevron-left"/>
+          <MonthSelectButton onPress={() => handleDateChange("prev")}>
+            <MonthSelectIcon name="chevron-left" />
           </MonthSelectButton>
-          <Month>Maio</Month>
-          <MonthSelectButton>
-            <MonthSelectIcon name="chevron-right"/>
+          <Month>{format(selectedDate, "MMMM, yyyy", { locale: ptBR })}</Month>
+          <MonthSelectButton onPress={() => handleDateChange("next")}>
+            <MonthSelectIcon name="chevron-right" />
           </MonthSelectButton>
         </MonthSelect>
         <ChartContainer>
