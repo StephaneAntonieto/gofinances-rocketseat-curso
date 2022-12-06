@@ -7,12 +7,14 @@ import * as SplashScreen from "expo-splash-screen";
 import { AppRoutes } from "./src/routes/app.routes";
 import { NavigationContainer } from "@react-navigation/native";
 
+//Components
+import { SignIn } from "./src/screens/SignIn";
+
 //Style
 import 'intl';
 import 'intl/locale-data/jsonp/pt-BR';
 import { ThemeProvider } from "styled-components";
 import theme from "./src/global/styles/theme";
-
 import {
   useFonts,
   Poppins_400Regular,
@@ -39,7 +41,7 @@ export default function App() {
     <ThemeProvider theme={theme}>
       <StatusBar barStyle={"light-content"} backgroundColor={"#000"} />
       <NavigationContainer>
-        <AppRoutes />
+        <SignIn />
       </NavigationContainer>
     </ThemeProvider>
   );

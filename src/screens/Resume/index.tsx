@@ -1,5 +1,6 @@
 //Native
 import React, { useCallback, useState } from "react";
+import { useFocusEffect } from "@react-navigation/native";
 import { ActivityIndicator } from "react-native";
 import { VictoryPie } from "victory-native";
 import { useBottomTabBarHeight } from "@react-navigation/bottom-tabs";
@@ -28,7 +29,6 @@ import {
 } from "./styles";
 import { useTheme } from "styled-components";
 import { RFValue } from "react-native-responsive-fontsize";
-import { useFocusEffect } from "@react-navigation/native";
 
 interface TransactionData {
   type: "positive" | "negative";
