@@ -10,6 +10,9 @@ import { NavigationContainer } from "@react-navigation/native";
 //Components
 import { SignIn } from "./src/screens/SignIn";
 
+//Context
+import { AuthProvider } from "./src/hooks/auth";
+
 //Style
 import 'intl';
 import 'intl/locale-data/jsonp/pt-BR';
@@ -41,7 +44,9 @@ export default function App() {
     <ThemeProvider theme={theme}>
       <StatusBar barStyle={"light-content"} backgroundColor={"#000"} />
       <NavigationContainer>
-        <SignIn />
+        <AuthProvider>
+          <SignIn />
+        </AuthProvider>
       </NavigationContainer>
     </ThemeProvider>
   );

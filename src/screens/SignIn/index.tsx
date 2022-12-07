@@ -1,6 +1,9 @@
 //Native
-import React from "react";
+import React, { useContext } from "react";
 import { RFValue } from "react-native-responsive-fontsize";
+
+//Context
+import { useAuth } from "../../hooks/auth";
 
 //Components
 import { SigInSocialButton } from "../../components/SignInSocialButton";
@@ -22,6 +25,8 @@ import {
 } from "./styles";
 
 export function SignIn() {
+  const { user } = useAuth();
+  console.log(user);
   return (
     <Container>
       <Header>
