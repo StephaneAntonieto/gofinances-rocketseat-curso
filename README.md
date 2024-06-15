@@ -1,64 +1,40 @@
-## Rocketseat React Native + TypeScript Project
+# React Native TypeScript App
 
-### Project Overview
+This project is a mobile application developed using React Native and TypeScript as part of the Rocketseat course. It includes a login screen and a main screen where all balance transactions (adding, removing, and checking balance results) are handled.
 
-This project is a React Native application with TypeScript, built during a Rocketseat course. It features a login screen, a main screen for managing finances, and functionality for adding, removing, and checking balance.
+## Features
 
-### Features
+- **Login Screen:** Allows users to authenticate into the application.
+- **Main Screen:** Provides functionalities for:
+  - Adding balance
+  - Removing balance
+  - Checking balance results
 
-* Login screen for secure user authentication
-* Main screen for managing finances
-* Functionality to add balance
-* Functionality to remove balance
-* Functionality to check balance
+## Installation
 
-### Installation
+Follow these steps to run the project locally:
 
-1. Clone the repository
+1. Clone this repository.
+2. Install dependencies with `npm install` or `yarn install`.
+3. Run the Metro bundler with `npx react-native start`.
+4. Connect a device or use an emulator.
+5. Run the application on Android or iOS with `npx react-native run-android` or `npx react-native run-ios`.
 
-2. Install dependencies:
+## Technologies Used
 
-```bash
-npm install
-```
+- React Native
+- TypeScript
+- Node.js
+- npm / Yarn
 
-3. Run the application:
+## Getting Started
 
-```bash
-npm start
-```
+To get a local copy up and running follow these simple steps.
 
-### Usage
+### Prerequisites
 
-1. Open the application on your device or emulator
-2. Login using your credentials
-3. Navigate to the main screen
-4. Use the buttons to add, remove, or check your balance
+Make sure you have Node.js and npm (or yarn) installed on your machine.
 
-### Development
-
-1. Clone the repository:
-
-```bash
-git clone https://github.com/rocketseat
-```
-
-2. Install dependencies:
-
-```bash
-npm install
-```
-
-3. Start the development server:
-
-```bash
-npm start
-```
-
-4. Make changes to the code
-5. Save changes
-6. Refresh the application in your browser or device
-
-### Contributing
-
-We welcome contributions to this project! Please feel free to open issues or pull requests with your suggestions and improvements.
+- Node.js: [https://nodejs.org/](https://nodejs.org/)
+- npm: [https://www.npmjs.com/](https://www.npmjs.com/) (comes with Node.js)
+- Yarn: [https://yarnpkg.com/](https://yarnpkg.com/)
