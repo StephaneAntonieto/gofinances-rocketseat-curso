@@ -14,11 +14,7 @@ This project is a React Native application with TypeScript, built during a Rocke
 
 ### Installation
 
-1. Clone the repository:
-
-```bash
-git clone https://github.com/rocketseat
-```
+1. Clone the repository
 
 2. Install dependencies:
 
